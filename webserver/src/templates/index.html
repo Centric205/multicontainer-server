@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Stream Server</title>
+    <link rel="icon" href="cloud.png">
+ 
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1{
+        font-family: sans-serif;
+        color: black;
+        padding: 2vh;
+        text-align: center;
+    }
+
+    .download{
+        width: 22%;
+        margin-left: 25%;
+        background-color: rgb(192, 190, 189);
+		font-size: large;
+		
+    }
+
+    .sensor{
+        width: 22%;
+        background-color: rgb(192, 190, 189);
+		font-size: large;
+    }
+
+	.on {
+		width: 22%;
+        margin-left: 25%;
+        background-color: rgb(5, 145, 5);
+		font-size: large;
+
+	}
+
+	.off {
+		width: 22%;
+        margin-right: 25%;
+        background-color: rgb(27, 29, 25);
+		font-size: large;
+	}
+
+	.status {
+		width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        background-color: rgb(192, 190, 189);
+		font-size: medium;
+	}
+
+	.exit {
+		width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        background-color: rgb(245, 172, 63);
+		font-size: medium;
+	}
+
+    button {
+        margin: 2vh 5vh; 
+        padding: 1vh;
+        border-radius: 100px;
+        
+        
+        
+    }
+    textarea {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+		border: orangered;
+		background-color: rgb(77, 74, 74);
+		text-indent: 5%;
+    }
+
+    .custom-shape-divider-top-1637734883 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1637734883 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-top-1637734883 .shape-fill {
+    fill: #141313;
+}
+
+</style>
+
+<body>
+    <div style="position: relative ; background-color: rgb(48, 33, 61); min-height: 100vh;">
+        <h1 class="h1">Senor Stream</h1>
+        <textarea name="adc_output" id="adc" cols="100" rows="25">
+			{{Text}}
+        </textarea>
+        
+        <button class="download">
+			<a href="{{ url_for('.download_file') }}">Download</a>
+        </button>
+        <button class="sensor">
+			<a href="{{ url_for('.sensor_stream') }}">SensorStream</a>
+        </button>
+
+		<button class="on">
+				<a href="{{ url_for('.sensor_on') }}">Sensor On</a>
+			</button>
+		
+			<button class="off">
+				<a href="{{ url_for('.sensor_off') }}">Sensor Off</a>
+		</button>
+
+		<button class="status">
+			<a href="{{ url_for('.sensor_status') }}">Status</a>
+		</button>	
+				
+		<button class="exit">
+				<a href="{{ url_for('.server_exit') }}">Exit</a>
+			</button>
+
+			<div class="custom-shape-divider-top-1637734883">
+				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+					<rect x="1200" height="3.6"></rect>
+					<rect height="3.6"></rect>
+					<path d="M0,0V3.6H580.08c11,0,19.92,5.09,19.92,13.2,0-8.14,8.88-13.2,19.92-13.2H1200V0Z" class="shape-fill"></path>
+				</svg>
+			</div>
+
+    </div>
+</body>
+</html>
