@@ -1,7 +1,5 @@
 from typing import Text
-from flask import Flask, send_file, render_template, redirect, url_for, request
-#import requests
-from requests.api import request
+from flask import Flask, send_file, render_template
 import socket
 
 
@@ -44,11 +42,26 @@ def sensor_on():
     sock.send(data)
     return "SUCCESS"
 
-#++++++++++++++++++++++++++++++++++++++
+# Sends instruction status to Pi-01 for it to update its current
+# status and writes it to a file
+# the file is then received and the current status is shown to
+# the user.
 @app.route('/status')
 def sensor_status():
-    pass
+    dat = "STATUS"
+    data = dat.encode()
+    data_len = len(dat)
+    send_len = str(data_len).encode('utf-8')
+    send_len += b' ' * (HEADER - len(send_len))
 
+    sock.send(send_len)
+    sock.send(data)
+    
+    PATH = "../../data/status.txt"
+    return send_file(PATH, as_attachment=True)
+
+
+# Routes sends the exit instruction to Pi-01 to exit
 @app.route('/off')
 def sensor_off():
     dat = "SENDOFF"
@@ -61,6 +74,9 @@ def sensor_off():
     sock.send(data)
     return "SUCCESS"
 
+
+
+# Routes sends the exit instruction to Pi-01 to exit
 @app.route('/exit')
 def server_exit():
     dat = "EXIT"
