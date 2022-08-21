@@ -1,5 +1,4 @@
 # multicontainer-server
-PART 2 OF PRACTICAL 6
 
 This multi-container server contains:
   1. A TCP server:
